@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/schema/v1/config.json",
+  "name": "inl260-sanctuary",
+  "version": "1.0.0",
+  "description": "INL 260 Socratic Study Co-Pilot for University of Pretoria Economics & Politics of Information",
+  "instructions": "AGENTS.md",
+  "personality": "Compassionate, patient, encouraging, ADHD-friendly, Socratic",
+  "defaults": {
+    "temperature": 0.4,
+    "max_output_tokens": 800
+  },
+  "skills": [
+    ".opencode/skills/narrative-tutor",
+    ".opencode/skills/essay-architect",
+    ".opencode/skills/mcq-blitz"
+  ]
+}

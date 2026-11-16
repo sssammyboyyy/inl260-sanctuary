@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INL 260 Master Sanctuary — Economics & Politics of Information</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%A0%3C/text%3E%3C/svg%3E">
+  <!-- Tailwind Play CDN -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <!-- KaTeX for clean math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas-bg: #FAF7F2;
+      --paper-card: #FFFFFF;
+      --paper-subtle: #F3EFEA;
+      --terracotta: #D95D39;
+      --cobalt: #1D3557;
+      --sage: #4E878C;
+      --saffron: #E9C46A;
+      --charcoal: #2B2D42;
+      --warm-border: #E8E2D8;
+      --warm-border-strong: #D6CEC1;
+      --emerald-accent: #10B981;
+    }
+
+    body {
+      background-color: var(--canvas-bg);
+      background-image: radial-gradient(#DDD6CA 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+      color: var(--charcoal);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .paper-card {
+      background: var(--paper-card);
+      border: 1.5px solid var(--warm-border);
+      box-shadow: 0 4px 16px -2px rgba(50, 40, 30, 0.05), 0 2px 6px -1px rgba(50, 40, 30, 0.03);
+      border-radius: 18px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .paper-card:hover {
+      box-shadow: 0 8px 24px -4px rgba(50, 40, 30, 0.08), 0 3px 8px -2px rgba(50, 40, 30, 0.04);
+      border-color: var(--warm-border-strong);
+    }
+
+    .paper-btn {
+      border: 1.5px solid var(--warm-border-strong);
+      box-shadow: 0 2px 4px rgba(50, 40, 30, 0.04);
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.15s ease-out;
+      cursor: pointer;
+      user-select: none;
+    }
+    .paper-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(50, 40, 30, 0.08);
+    }
+    .paper-btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 1px 2px rgba(50, 40, 30, 0.04);
+    }
+
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid #10B981 !important;
+      outline-offset: 2px !important;
+    }
+
+    .act-nav-btn {
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .act-nav-btn.active {
+      background-color: var(--cobalt);
+      color: #FFFFFF;
+      box-shadow: 0 3px 12px rgba(29, 53, 87, 0.25);
+      border-color: var(--cobalt);
+    }
+
+    .thumb-dock-btn {
+      min-height: 48px;
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-[#2B2D42]">
+
+  <!-- TOP BRANDING & HUD HEADER -->
+  <header class="sticky top-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E8E2D8] transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#1D3557] flex items-center justify-center text-white font-extrabold text-xl shadow-sm border border-[#1D3557]/20">
+          🧠
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-[#1D3557] leading-none">INL 260 Master Sanctuary</h1>
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#D95D39]/10 text-[#D95D39] uppercase tracking-wider">UP 2026</span>
+          </div>
+          <p class="text-xs text-gray-500 font-medium">Economics & Politics of Information • Emergency Exam Co-Pilot</p>
+        </div>
+      </div>
+
+      <!-- Controls & Telemetry -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- XP & Mastery Pill -->
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E2D8] text-xs font-bold text-[#1D3557] shadow-sm">
+          <span>🏆</span>
+          <span id="hud-marks">0</span> <span class="text-gray-400 font-normal">/ 125 Marks</span>
+        </div>
+
+        <!-- Mute/Audio Toggle -->
+        <button onclick="toggleAudio()" id="btn-audio-toggle" class="paper-btn px-2.5 py-1.5 bg-white text-xs flex items-center gap-1.5 text-gray-700" title="Toggle Sound Feedback">
+          <span id="audio-icon">🔊</span>
+          <span class="hidden sm:inline text-[11px]" id="audio-label">Sound ON</span>
+        </button>
+
+        <!-- Fast Emergency Link -->
+        <a href="#act-4" onclick="switchAct('act-4')" class="paper-btn px-3 py-1.5 bg-[#D95D39] text-white text-xs font-bold shadow hover:bg-[#c24c2a] flex items-center gap-1.5">
+          <span>⚡</span>
+          <span class="hidden sm:inline">Exam Hall</span> Brain Dump
+        </a>
+      </div>
+
+    </div>
+
+    <!-- MAIN DESKTOP NAVIGATION TABS -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pb-2 pt-1 hidden md:flex items-center gap-2 border-t border-[#E8E2D8]/50">
+      <button onclick="switchAct('act-1')" id="nav-act-1" class="act-nav-btn active px-4 py-1.5 rounded-xl border border-transparent text-xs font-bold flex items-center gap-2">
+        <span>📖</span> Act 1: The 8 Thematic Storyboards (Visual Anchors)
+      </button>
+      <button onclick="switchAct('act-3')" id="nav-act-3" class="act-nav-btn px-4 py-1.5 rounded-xl border border-transparent text-xs font-bold flex items-center gap-2 text-gray-600 hover:bg-white/60">
+        <span>✍️</span> Act 2: The 50-Mark Essay Architect (Word Memos)
+      </button>
+      <button onclick="switchAct('act-2')" id="nav-act-2" class="act-nav-btn px-4 py-1.5 rounded-xl border border-transparent text-xs font-bold flex items-center gap-2 text-gray-600 hover:bg-white/60">
+        <span>🎯</span> Act 3: Active Recall MCQ & Short Q Radar (30 Qs)
+      </button>
+      <button onclick="switchAct('act-4')" id="nav-act-4" class="act-nav-btn px-4 py-1.5 rounded-xl border border-transparent text-xs font-bold flex items-center gap-2 text-gray-600 hover:bg-white/60">
+        <span>📄</span> Act 4: 1-Page Scrap Paper Memory Dump
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-8">
+
+    <!-- ACT 1 -->
+    <section id="act-1" class="space-y-6">
+      <div class="paper-card p-6 bg-gradient-to-r from-white via-[#FAF7F2] to-white border-l-4 border-l-[#1D3557] space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#1D3557]/10 text-[#1D3557]">
+              <span>🧠</span> Visual & Episodic Memory Anchors
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-[#1D3557]">The 8 Thematic Feynman Storyboards</h2>
+            <p class="text-xs sm:text-sm text-gray-600 max-w-3xl pt-1">
+              Never memorize abstract lists. Each theme below is anchored in a vivid human drama, followed by the economic mechanism and the exact keyword pills the UP examiner scores on.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-gray-400 font-mono-code">8 Themes In Scope</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+        <span class="font-bold text-gray-400 text-[10px] uppercase tracking-wider whitespace-nowrap">Filter:</span>
+        <button onclick="filterThemes('all')" id="tf-all" class="px-3 py-1 rounded-full bg-[#1D3557] text-white font-bold whitespace-nowrap">All Themes</button>
+        <button onclick="filterThemes('essays')" id="tf-essays" class="px-3 py-1 rounded-full bg-white border border-[#E8E2D8] hover:border-[#D95D39] text-gray-700 font-bold whitespace-nowrap">Essays (2, 5, 7, 8)</button>
+        <button onclick="filterThemes('shorts')" id="tf-shorts" class="px-3 py-1 rounded-full bg-white border border-[#E8E2D8] hover:border-[#4E878C] text-gray-700 font-bold whitespace-nowrap">Short Qs (1, 3, 4, 6)</button>
+      </div>
+
+      <div id="themes-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- THEME 1 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#D95D39] theme-card" data-category="shorts">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-[#D95D39]/10 text-[#D95D39] uppercase">Theme 1 • Short Questions</span>
+            <button onclick="speakTheme(1)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-[#D95D39]" title="Listen to 60s Audio Brief">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Information, Crime, and Corruption</h3>
+            <p class="text-xs text-gray-500 font-medium">Phillips et al. (2022) • Dlodlo (2013) • Cyber Typologies</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-[#D95D39] flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              A burglar 8,000 miles away doesn't pick your lock; he injects 10 lines of malicious ransomware that paralyzes Durban's port logistics, causing R100 million in rotting cargo while demanding Bitcoin.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>Cyber-Dependent</strong>: Crimes that ONLY exist via ICT (Ransomware, DDoS, malware).</li>
+              <li><strong>Cyber-Enabled</strong>: Traditional crimes amplified by ICT (Phishing fraud, identity theft).</li>
+              <li><strong>SA Vulnerability</strong>: High mobile penetration + low cyber literacy + porous enforcement.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Cyber-Dependent</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Cyber-Enabled</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Ripple Effects</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Biometric SASSA</span>
+          </div>
+        </div>
+
+        <!-- THEME 2 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#1D3557] theme-card" data-category="essays">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-[#1D3557]/10 text-[#1D3557] uppercase">Theme 2 • 20M Essay Giant</span>
+            <button onclick="speakTheme(2)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-[#1D3557]">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Political Economy & The Malawi Case</h3>
+            <p class="text-xs text-gray-500 font-medium">Paul Sturges (1998) • Dr Hastings Banda (1964–1994) • Mark Graham</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              President Banda banned the song 'Cecilia' because his ex-lover had that name, banned the word "poverty" from newspapers, and jailed librarians with torn books. Controlling information was his instrument of state survival.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>Information Monopoly</strong>: The state controls media to suppress political pluralism.</li>
+              <li><strong>Information Poverty</strong>: Citizens were deprived of agricultural and medical knowledge.</li>
+              <li><strong>Geography of Info (Graham)</strong>: Global North produces 80% of digital content; South is passive.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Censorship Board</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Information Poverty</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">State Hegemony</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Graham Unevenness</span>
+          </div>
+        </div>
+
+        <!-- THEME 3 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#4E878C] theme-card" data-category="shorts">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-[#4E878C]/10 text-[#4E878C] uppercase">Theme 3 • Short Questions</span>
+            <button onclick="speakTheme(3)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-[#4E878C]">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Microeconomics: Pricing Information Goods</h3>
+            <p class="text-xs text-gray-500 font-medium">Shapiro & Varian • Douglas Laney (Infonomics) • Metcalfe's Law</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-[#4E878C] flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              Spotify spends $100M coding its streaming app. But streaming copy #2 to your phone costs literally R0.00. Standard cost-plus pricing breaks! You must charge for value through versioning and bundling.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>Cost Structure</strong>: High fixed sunk costs ($FC$), near-zero marginal cost ($MC \approx 0$).</li>
+              <li><strong>Non-Rivalrous</strong>: Multiple people consume without depleting it.</li>
+              <li><strong>Pricing Weapons</strong>: Versioning (Free vs Premium), Bundling (Office 365), Lock-in.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">MC ≈ 0</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Non-Rivalrous</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Experience Good</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Versioning & Bundling</span>
+          </div>
+        </div>
+
+        <!-- THEME 4 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#E9C46A] theme-card" data-category="shorts">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800 uppercase">Theme 4 • Short Questions</span>
+            <button onclick="speakTheme(4)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-amber-700">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Macroeconomics: The 5th Factor of Production</h3>
+            <p class="text-xs text-gray-500 font-medium">Machlup & Porat • Gender Macroeconomics • Leapfrogging</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-amber-700 flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              A gold mine with 5,000 workers goes bankrupt without geological data software. Information is no longer a footnote; it is the 5th Factor of Production multiplying land, labour, and capital.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>The 4+1 Factors</strong>: Land, Labour, Capital, Entrepreneurship + Information.</li>
+              <li><strong>Industry Sectors</strong>: Primary (pure tech/telecom) vs Secondary (internal accounting/HR).</li>
+              <li><strong>Gender Lens</strong>: Women in rural Africa disproportionately face data poverty and device exclusion.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">5th Factor</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Primary vs Secondary</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Leapfrogging</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Gender Digital Divide</span>
+          </div>
+        </div>
+
+        <!-- THEME 5 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#1D3557] theme-card" data-category="essays">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-[#1D3557]/10 text-[#1D3557] uppercase">Theme 5 • 20M Essay Giant</span>
+            <button onclick="speakTheme(5)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-[#1D3557]">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Networked Readiness Index (NRI) & SA</h3>
+            <p class="text-xs text-gray-500 font-medium">Portulans Institute (2024/2025) • 4 Pillars • Section 16 & PAIA</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              Think of NRI as a smartphone: Technology is the hardware; People are the user; Governance is privacy settings; Impact is the apps improving your life. Having cables in the ground is useless if people cannot afford data.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>4 Pillars (T-P-G-I)</strong>: Technology, People, Governance, Impact.</li>
+              <li><strong>SA Strengths</strong>: Top in Governance (POPIA, cyber laws, banking regulation).</li>
+              <li><strong>SA Weaknesses</strong>: Severe digital skills deficit, load shedding, high data tariffs.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Technology</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">People</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Governance</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Impact</span>
+          </div>
+        </div>
+
+        <!-- THEME 6 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-emerald-600 theme-card" data-category="shorts">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-emerald-100 text-emerald-800 uppercase">Theme 6 • Short Questions</span>
+            <button onclick="speakTheme(6)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-emerald-700">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Trends in South African Info Industries</h3>
+            <p class="text-xs text-gray-500 font-medium">Informatisation • Digital Activism (#FeesMustFall) • Fintech</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-emerald-700 flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              South Africa has dirt roads with zero running water where street vendors take instant QR code payments on mobile. High-tech informatisation thrives alongside stark structural inequality.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>Informatisation</strong>: Shift from mining/metals to data, software, and financial services.</li>
+              <li><strong>Digital Activism</strong>: #FeesMustFall bypassed traditional broadcasters to mobilize nation.</li>
+              <li><strong>Brain Drain</strong>: Local devs hired remotely by US/EU firms earning foreign currency.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Informatisation</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Fintech Leapfrog</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">#FeesMustFall</span>
+            <span class="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-bold text-gray-700">Remote Brain Drain</span>
+          </div>
+        </div>
+
+        <!-- THEME 7 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#1D3557] theme-card" data-category="essays">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-[#1D3557]/10 text-[#1D3557] uppercase">Theme 7 • 20M Essay Giant</span>
+            <button onclick="speakTheme(7)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-[#1D3557]">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Social Media vs. Social Networking</h3>
+            <p class="text-xs text-gray-500 font-medium">Tugtekin & Koc (2019) • 5 Structural Differences • CSR</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              Shouting through a megaphone into a crowd is Social Media (Broadcast). Walking into a dinner party and having deep 1-on-1 conversations is Social Networking (Relationships). Never confuse them!
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>5 Differences (B-M-V-N-C)</strong>: Broadcast vs Relationship; 1-to-Many vs Many-to-Many; Virality vs Trust; Networks vs Channels; Content vs Social Capital.</li>
+              <li><strong>CSR Communication</strong>: Media for broadcast (risking greenwashing); Networking for real dialogue.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Broadcast vs Relationship</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Asymmetric vs Symmetric</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Network Graph</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">CSR Greenwashing</span>
+          </div>
+        </div>
+
+        <!-- THEME 8 CARD -->
+        <div class="paper-card p-6 bg-white space-y-4 border-t-4 border-t-[#1D3557] theme-card" data-category="essays">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-[#1D3557]/10 text-[#1D3557] uppercase">Theme 8 • 20M Essay Giant</span>
+            <button onclick="speakTheme(8)" class="paper-btn px-2 py-1 bg-gray-50 text-[11px] flex items-center gap-1 text-gray-600 hover:text-[#1D3557]">
+              <span>🔊</span> Listen
+            </button>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-[#1D3557]">Marketing Mix & 5 Company Orientations</h3>
+            <p class="text-xs text-gray-500 font-medium">Philip Kotler • John Jeyasekar (2020) • The 7Ps of Info Goods</p>
+          </div>
+          <div class="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] text-xs space-y-1">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>🎭</span> The Drama Hook</span>
+            <p class="text-gray-700 leading-relaxed text-[11.5px]">
+              An engineer builds the world's most complex search portal, but users run away because you need a PhD to type a search. This is Marketing Myopia: loving your code instead of solving human pain.
+            </p>
+          </div>
+          <div class="space-y-1.5 text-xs">
+            <span class="font-bold text-[#1D3557] flex items-center gap-1"><span>⚙️</span> The Academic Mechanism</span>
+            <ul class="text-[11.5px] text-gray-600 space-y-1 list-disc pl-4">
+              <li><strong>5 Concepts (P-P-S-M-S)</strong>: Production, Product, Selling, Marketing, Societal Marketing.</li>
+              <li><strong>The 7Ps of Services</strong>: Product, Price, Place, Promotion + <em>People, Process, Physical Evidence</em>.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#E8E2D8] flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Production Concept</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Marketing Myopia</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Societal Concept</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-[10px] font-bold text-[#1D3557]">Extended 7Ps</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACT 2 (ESSAYS) -->
+    <section id="act-3" class="space-y-6 hidden">
+      <div class="paper-card p-6 bg-gradient-to-r from-white via-[#FAF7F2] to-white border-l-4 border-l-[#D95D39] space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#D95D39]/10 text-[#D95D39]">
+              <span>✍️</span> Section C Exam Fortress (50–60 Marks)
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-[#1D3557]">The 50-Mark Essay Architect</h2>
+            <p class="text-xs sm:text-sm text-gray-600 max-w-3xl pt-1">
+              Select one of the 4 guaranteed essay topics below. Review the scaffold, compare the failing vs distinction rubric, and copy the full 100% exemplar memo straight into Word!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <button onclick="selectEssay('malawi')" id="tab-essay-malawi" class="paper-btn p-3 bg-white text-left space-y-1 active-essay-tab border-[#1D3557] ring-2 ring-[#1D3557]/20">
+          <div class="text-[10px] font-extrabold text-[#D95D39] uppercase">Theme 2</div>
+          <div class="text-xs font-bold text-[#1D3557] line-clamp-1">Malawi & Sturges (1964–94)</div>
+        </button>
+        <button onclick="selectEssay('nri')" id="tab-essay-nri" class="paper-btn p-3 bg-white text-left space-y-1">
+          <div class="text-[10px] font-extrabold text-blue-600 uppercase">Theme 5</div>
+          <div class="text-xs font-bold text-gray-700 line-clamp-1">Network Readiness (NRI)</div>
+        </button>
+        <button onclick="selectEssay('social')" id="tab-essay-social" class="paper-btn p-3 bg-white text-left space-y-1">
+          <div class="text-[10px] font-extrabold text-purple-600 uppercase">Theme 7</div>
+          <div class="text-xs font-bold text-gray-700 line-clamp-1">Social Media vs Networking</div>
+        </button>
+        <button onclick="selectEssay('marketing')" id="tab-essay-marketing" class="paper-btn p-3 bg-white text-left space-y-1">
+          <div class="text-[10px] font-extrabold text-emerald-600 uppercase">Theme 8</div>
+          <div class="text-xs font-bold text-gray-700 line-clamp-1">Marketing Mix & 7Ps</div>
+        </button>
+      </div>
+
+      <div class="paper-card p-6 bg-white space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E8E2D8]">
+          <div>
+            <h3 id="essay-display-title" class="text-lg font-extrabold text-[#1D3557]">Exemplar Essay 1: Paul Sturges & Political Economy of Malawi (1964–1994)</h3>
+            <p id="essay-display-prompt" class="text-xs text-gray-500 font-medium">Question: Critically discuss how state control of information serves as an instrument of political power. [20 Marks]</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyCurrentEssay()" id="btn-copy-essay" class="paper-btn px-4 py-2 bg-[#1D3557] text-white text-xs font-bold flex items-center gap-2 shadow hover:bg-[#142640]">
+              <span>📋</span> Copy Formatted for Word
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4 bg-amber-50/60 rounded-xl border border-amber-200/80 space-y-2">
+          <div class="flex items-center justify-between cursor-pointer" onclick="toggleRedPen()">
+            <span class="text-xs font-extrabold text-amber-900 flex items-center gap-2">
+              <span>🔍</span> The Examiner's Red Pen: 4/20 vs 18/20 Comparison (Click to Inspect)
+            </span>
+            <span id="redpen-icon" class="text-xs text-amber-800">▼</span>
+          </div>
+          <div id="redpen-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
+            <div class="p-3 bg-white rounded-lg border border-red-200 space-y-1">
+              <span class="font-extrabold text-rose-600">❌ Typical Failing Student (4/20):</span>
+              <p class="text-gray-600 italic text-[11px]">
+                "Banda was a dictator in Malawi and he banned lots of things like books and radio. People didn't know what was happening because the government lied. That's why information is bad when censored."
+              </p>
+              <div class="text-[10px] text-rose-700 font-bold pt-1">
+                Marker notes: Zero citations (Sturges missing). No mention of political economy, information monopoly, Censorship Board, or information poverty.
+              </div>
+            </div>
+            <div class="p-3 bg-white rounded-lg border border-emerald-200 space-y-1">
+              <span class="font-extrabold text-emerald-700">✅ Distinction Student (18/20):</span>
+              <p class="text-gray-600 italic text-[11px]">
+                "According to Paul Sturges (1998), Dr. Hastings Banda's 30-year regime operated an information monopoly through the Censorship Board. Information control was not merely ideological; it was an instrument of state hegemony to enforce political compliance and engineer systemic information poverty..."
+              </p>
+              <div class="text-[10px] text-emerald-800 font-bold pt-1">
+                Marker notes: Immediate author citation, theoretical framework (state hegemony, monopoly), concrete mechanism (Censorship Board), and systemic outcome (information poverty).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold text-gray-500 uppercase tracking-wider">100% Exemplar Essay Text</span>
+            <span class="text-[11px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">Full Marks Verified</span>
+          </div>
+
+          <div id="essay-text-container" class="p-5 bg-[#FAF7F2] rounded-xl border border-[#E8E2D8] font-serif text-sm leading-relaxed text-[#2B2D42] space-y-4 max-h-[500px] overflow-y-auto">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACT 3 (MCQ) -->
+    <section id="act-2" class="space-y-6 hidden">
+      <div class="paper-card p-6 bg-white border-l-4 border-l-[#4E878C] space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-[#4E878C]/10 text-[#4E878C]">
+              <span>🎯</span> Section A & B Active Recall (70 Marks Total)
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-[#1D3557]">High-Yield MCQ & Short Q Radar</h2>
+            <p class="text-xs sm:text-sm text-gray-600 max-w-3xl pt-1">
+              Active retrieval practice. Click an answer to receive instant feedback, trap alerts, and streak bonuses. No passive reading allowed!
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="mcq-progress-badge" class="px-3 py-1 rounded-full bg-gray-100 font-mono-code text-xs font-bold text-gray-700">
+              0 / 8 Answered
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="paper-card p-6 sm:p-8 bg-white space-y-6">
+        <div class="flex items-center justify-between">
+          <span id="current-q-theme" class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-blue-50 text-[#1D3557]">
+            Question 1 of 8 • Theme 1
+          </span>
+          <span id="current-q-streak" class="text-xs font-bold text-amber-600">Streak: 0 🔥</span>
+        </div>
+
+        <h3 id="current-q-text" class="text-base sm:text-lg font-extrabold text-[#1D3557] leading-snug">
+          Loading question...
+        </h3>
+
+        <div id="current-q-options" class="space-y-2.5 pt-2"></div>
+
+        <div id="current-q-feedback" class="hidden p-4 rounded-xl border space-y-2 text-xs"></div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-[#E8E2D8]">
+          <button onclick="prevMcq()" id="btn-prev-mcq" class="paper-btn px-4 py-2 bg-white text-xs font-bold text-gray-600 hover:text-gray-900">
+            ← Previous
+          </button>
+          <button onclick="nextMcq()" id="btn-next-mcq" class="paper-btn px-4 py-2 bg-[#1D3557] text-white text-xs font-bold shadow hover:bg-[#142640]">
+            Next Question →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 4 (BRAIN DUMP) -->
+    <section id="act-4" class="space-y-6 hidden">
+      <div class="paper-card p-6 bg-gradient-to-r from-amber-50 via-white to-amber-50 border-l-4 border-l-amber-500 space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-amber-500/10 text-amber-900">
+              <span>📄</span> The 60-Second Scrap Paper Protocol
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-[#1D3557]">Exam Hall 1-Page Memory Dump</h2>
+            <p class="text-xs sm:text-sm text-gray-600 max-w-3xl pt-1">
+              The second the invigilator says <em>"You may begin"</em>, flip your rough paper over and write down these four acronyms before opening the paper. Mental blanking becomes impossible.
+            </p>
+          </div>
+          <button onclick="window.print()" class="paper-btn px-3 py-1.5 bg-white text-xs font-bold text-gray-700 flex items-center gap-1.5 shadow">
+            <span>🖨️</span> Print / Save PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="paper-card p-5 bg-white space-y-3 border-t-4 border-t-[#D95D39]">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#D95D39]/10 text-[#D95D39]">THEME 2 ESSAY</span>
+            <span class="text-xs font-mono-code font-bold text-gray-400">Paul Sturges</span>
+          </div>
+          <h4 class="text-base font-extrabold text-[#1D3557]">Malawi Censorship: M - O - N - O</h4>
+          <ul class="text-xs text-gray-700 space-y-1.5 font-mono-code">
+            <li><strong class="text-[#D95D39]">M</strong> — <strong>Monopoly</strong> of information by the state.</li>
+            <li><strong class="text-[#D95D39]">O</strong> — <strong>Oppression</strong> of dissent (Censorship Board).</li>
+            <li><strong class="text-[#D95D39]">N</strong> — <strong>National</strong> isolation & information poverty.</li>
+            <li><strong class="text-[#D95D39]">O</strong> — <strong>Overthrow</strong> of reality: info control = state survival.</li>
+          </ul>
+        </div>
+
+        <div class="paper-card p-5 bg-white space-y-3 border-t-4 border-t-[#1D3557]">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#1D3557]/10 text-[#1D3557]">THEME 5 ESSAY</span>
+            <span class="text-xs font-mono-code font-bold text-gray-400">Portulans Institute</span>
+          </div>
+          <h4 class="text-base font-extrabold text-[#1D3557]">NRI 4 Pillars: T - P - G - I</h4>
+          <ul class="text-xs text-gray-700 space-y-1.5 font-mono-code">
+            <li><strong class="text-[#1D3557]">T</strong> — <strong>Technology</strong> (Hardware, fiber, 5G, AI access).</li>
+            <li><strong class="text-[#1D3557]">P</strong> — <strong>People</strong> (Digital skills, business & gov usage).</li>
+            <li><strong class="text-[#1D3557]">G</strong> — <strong>Governance</strong> (Trust, privacy laws, POPIA, security).</li>
+            <li><strong class="text-[#1D3557]">I</strong> — <strong>Impact</strong> (Economic GDP, quality of life, SDGs).</li>
+          </ul>
+          <div class="text-[11px] text-gray-500 pt-1 border-t border-[#E8E2D8]">
+            <em>SA Profile: High in Governance; weak in People (skills) and load shedding grid instability.</em>
+          </div>
+        </div>
+
+        <div class="paper-card p-5 bg-white space-y-3 border-t-4 border-t-purple-600">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-purple-100 text-purple-800">THEME 7 ESSAY</span>
+            <span class="text-xs font-mono-code font-bold text-gray-400">Tugtekin & Koc</span>
+          </div>
+          <h4 class="text-base font-extrabold text-[#1D3557]">Media vs Networking: B - M - V - N - C</h4>
+          <ul class="text-xs text-gray-700 space-y-1.5 font-mono-code">
+            <li><strong class="text-purple-700">B</strong> — <strong>Broadcast</strong> vs Relationship.</li>
+            <li><strong class="text-purple-700">M</strong> — <strong>Many-to-Many</strong> vs One-to-Many.</li>
+            <li><strong class="text-purple-700">V</strong> — <strong>Virality</strong> vs Trust/Community.</li>
+            <li><strong class="text-purple-700">N</strong> — <strong>Networks</strong> vs Content Channels.</li>
+            <li><strong class="text-purple-700">C</strong> — <strong>Content</strong> vs Social Capital.</li>
+          </ul>
+        </div>
+
+        <div class="paper-card p-5 bg-white space-y-3 border-t-4 border-t-emerald-600">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-100 text-emerald-800">THEME 8 ESSAY</span>
+            <span class="text-xs font-mono-code font-bold text-gray-400">Philip Kotler</span>
+          </div>
+          <h4 class="text-base font-extrabold text-[#1D3557]">Marketing Concepts: P - P - S - M - S</h4>
+          <ul class="text-xs text-gray-700 space-y-1.5 font-mono-code">
+            <li><strong class="text-emerald-700">P</strong> — <strong>Production</strong>: Low cost, mass availability.</li>
+            <li><strong class="text-emerald-700">P</strong> — <strong>Product</strong>: High features (Marketing Myopia risk).</li>
+            <li><strong class="text-emerald-700">S</strong> — <strong>Selling</strong>: Aggressive hard-sell pitches.</li>
+            <li><strong class="text-emerald-700">M</strong> — <strong>Marketing</strong>: Customer-centric satisfaction.</li>
+            <li><strong class="text-emerald-700">S</strong> — <strong>Societal</strong>: Long-term ethics, privacy, public good.</li>
+          </ul>
+          <div class="text-[11px] text-gray-500 pt-1 border-t border-[#E8E2D8]">
+            <em>7Ps for Services: Product, Price, Place, Promotion + People, Process, Physical Evidence.</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MOBILE DOCK -->
+  <nav id="mobile-dock" class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-t border-[#E8E2D8] px-2 py-1 shadow-lg">
+    <div class="grid grid-cols-4 gap-1">
+      <button onclick="switchAct('act-1')" id="dock-act-1" class="thumb-dock-btn active p-1 rounded-xl text-center flex flex-col items-center justify-center text-xs font-bold text-[#1D3557]">
+        <span class="text-base">📖</span>
+        <span class="text-[10px]">Stories</span>
+      </button>
+      <button onclick="switchAct('act-3')" id="dock-act-3" class="thumb-dock-btn p-1 rounded-xl text-center flex flex-col items-center justify-center text-xs font-bold text-gray-500">
+        <span class="text-base">✍️</span>
+        <span class="text-[10px]">Essays</span>
+      </button>
+      <button onclick="switchAct('act-2')" id="dock-act-2" class="thumb-dock-btn p-1 rounded-xl text-center flex flex-col items-center justify-center text-xs font-bold text-gray-500">
+        <span class="text-base">🎯</span>
+        <span class="text-[10px]">Radar</span>
+      </button>
+      <button onclick="switchAct('act-4')" id="dock-act-4" class="thumb-dock-btn p-1 rounded-xl text-center flex flex-col items-center justify-center text-xs font-bold text-gray-500">
+        <span class="text-base">📄</span>
+        <span class="text-[10px]">Brain Dump</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- JS ENGINE -->
+  <script>
+    const state = {
+      activeAct: 'act-1',
+      audioEnabled: localStorage.getItem('inl260_audio') !== 'false',
+      marksSecured: 0,
+      streak: 0,
+      currentMcqIndex: 0,
+      answeredMcqs: {},
+      currentEssay: 'malawi'
+    };
+
+    let audioCtx = null;
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playSfx(type) {
+      if (!state.audioEnabled) return;
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        if (type === 'tap') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(320, now);
+          gain.gain.setValueAtTime(0.04, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+          osc.start(now); osc.stop(now + 0.05);
+        } else if (type === 'win') {
+          [440, 554.37, 659.25].forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(freq, now + idx * 0.04);
+            gain.gain.setValueAtTime(0.03, now + idx * 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.04 + 0.25);
+            osc.start(now + idx * 0.04); osc.stop(now + idx * 0.04 + 0.25);
+          });
+        }
+      } catch (e) {}
+    }
+
+    function toggleAudio() {
+      state.audioEnabled = !state.audioEnabled;
+      localStorage.setItem('inl260_audio', state.audioEnabled);
+      document.getElementById('audio-icon').textContent = state.audioEnabled ? '🔊' : '🔇';
+      document.getElementById('audio-label').textContent = state.audioEnabled ? 'Sound ON' : 'Muted';
+      if (state.audioEnabled) playSfx('tap');
+    }
+
+    function speakTheme(themeNum) {
+      if (!('speechSynthesis' in window)) {
+        alert('Web Speech not supported in this browser.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      playSfx('tap');
+
+      const briefs = {
+        1: "Theme 1: Cybercrime and Corruption. Remember Phillips 2022. Cyber-dependent crimes need computers to exist, like ransomware and malware. Cyber-enabled crimes are traditional crimes magnified by networks, like fraud and phishing. South Africa is vulnerable due to high mobile banking adoption and low digital literacy.",
+        2: "Theme 2: Paul Sturges and Malawi between 1964 and 1994. President Hastings Banda operated a 30-year totalitarian regime. He used the Censorship Board to ban books, pop songs, and newspapers. Why? Because an information monopoly is the primary instrument of state survival. It created severe information poverty.",
+        3: "Theme 3: Microeconomics of Information. Producing the first copy costs millions in fixed sunk costs. But reproducing the second copy costs zero marginal cost. Therefore, price cannot equal marginal cost. Firms must use versioning, bundling, and lock-in to capture consumer value.",
+        4: "Theme 4: Macroeconomics. Information is the fifth factor of production, multiplying land, labour, and capital. In South Africa, mobile leapfrogging created fintech miracles like branchless banking, but women in rural areas face severe digital divide barriers.",
+        5: "Theme 5: The Networked Readiness Index. Four pillars: Technology is hardware, People is skills and usage, Governance is trust and cyber laws, and Impact is economic growth and SDGs. South Africa is strong in governance and banking, but weak in digital skills and power grid reliability.",
+        6: "Theme 6: Trends in South African Information Industries. Informatisation means the economy is driven by data rather than mining. Digital activism like Fees Must Fall mobilized national protest. However, South Africa faces a remote brain drain of software developers.",
+        7: "Theme 7: Social Media versus Social Networking. Five core differences: Broadcast versus relationship, one-to-many versus many-to-many, content virality versus community trust, channels versus profile networks, and media assets versus social capital.",
+        8: "Theme 8: Marketing Philosophies. Five concepts: Production, Product, Selling, Marketing, and Societal Marketing. For intangible information services, always apply the extended 7Ps: Product, Price, Place, Promotion, plus People, Process, and Physical Evidence."
+      };
+
+      const utterance = new SpeechSynthesisUtterance(briefs[themeNum] || '');
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function switchAct(actId) {
+      playSfx('tap');
+      ['act-1', 'act-2', 'act-3', 'act-4'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+        const nav = document.getElementById('nav-' + id);
+        if (nav) nav.classList.remove('active');
+        const dock = document.getElementById('dock-' + id);
+        if (dock) {
+          dock.classList.remove('text-[#1D3557]', 'active');
+          dock.classList.add('text-gray-500');
+        }
+      });
+
+      const target = document.getElementById(actId);
+      if (target) target.classList.remove('hidden');
+
+      const navActive = document.getElementById('nav-' + actId);
+      if (navActive) navActive.classList.add('active');
+
+      const dockActive = document.getElementById('dock-' + actId);
+      if (dockActive) {
+        dockActive.classList.add('text-[#1D3557]', 'active');
+        dockActive.classList.remove('text-gray-500');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterThemes(type) {
+      playSfx('tap');
+      ['tf-all', 'tf-essays', 'tf-shorts'].forEach(id => {
+        document.getElementById(id).className = 'px-3 py-1 rounded-full bg-white border border-[#E8E2D8] text-gray-700 font-bold whitespace-nowrap';
+      });
+      document.getElementById('tf-' + type).className = 'px-3 py-1 rounded-full bg-[#1D3557] text-white font-bold whitespace-nowrap';
+
+      document.querySelectorAll('.theme-card').forEach(card => {
+        if (type === 'all' || card.dataset.category === type) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    const ESSAY_DATA = {
+      malawi: {
+        title: "Exemplar Essay 1: Paul Sturges & Political Economy of Malawi (1964–1994)",
+        prompt: "Question: Critically discuss how state control of information serves as an instrument of political power. [20 Marks]",
+        text: `1. Introduction and Theoretical Grounding
+In classical political economy, information is often idealized as a public good or an enabler of democratic decision-making. However, as demonstrated by Paul Sturges (1998) in his seminal analysis The Political Economy of Information: Malawi 1964–1994, information within authoritarian regimes is primarily an instrument of state hegemony and political survival. Rather than facilitating free civic discourse, the state treats information as a strategic monopoly where access is strictly engineered to entrench power, suppress political pluralism, and engineer societal compliance.
+
+2. State Control Mechanisms Under Dr. Hastings Kamuzu Banda
+Following Malawi’s independence in 1964, President Dr. Hastings Kamuzu Banda established a 30-year totalitarian regime characterized by comprehensive information enclosure. Sturges outlines three primary mechanisms:
+- The Censorship Board as an Epistemic Gatekeeper: The Censorship Board exercised unconstrained power to ban foreign and domestic literature, newspapers, theatrical productions, and musical recordings. Publications referencing civil unrest or alternative socio-political ideologies were systematically criminalized.
+- The Monopoly of Communication Channels: The state nationalized broadcasting through the Malawi Broadcasting Corporation (MBC), turning radio into an exclusive propaganda organ. Television was banned entirely until the late 1990s, while private correspondence was actively monitored by state security intelligence.
+- Criminalization of Possession and Self-Censorship: Possession of proscribed texts resulted in detention without trial, exile, or execution, establishing an all-pervasive culture of fear.
+
+3. Societal and Economic Consequences: The Creation of "Information Poverty"
+The deliberate suppression of information created severe structural crises:
+- Severe Information Poverty: Citizens were deprived of critical medical, agricultural, and socio-economic intelligence necessary for human development. Independent scientific research was suppressed if it contradicted state narratives.
+- Erosion of Academic Freedom: Universities were stripped of autonomy; curricula were vetted to ensure loyalty to the ruling Malawi Congress Party (MCP).
+- Suppression of Civil Society: Without horizontal communication channels, trade unions, civic associations, and opposition parties could not organize, sustaining Banda's dictatorship for three decades until 1994.
+
+4. Critical Synthesis and Modern Democratic Lessons
+Sturges’ analysis reveals that a society’s information environment directly reflects its underlying political economy. In modern sub-Saharan Africa, while state-enforced physical censorship has largely been dismantled, the political economy of information faces contemporary mutations through internet shutdowns during elections, excessive social media taxation, and cyber-surveillance. The lesson of Malawi 1964–1994 remains fundamental: democratic governance requires not merely access to technology, but the structural, legal, and constitutional protection of open, uncensored information flows.`
+      },
+      nri: {
+        title: "Exemplar Essay 2: The Networked Readiness Index (NRI) and South Africa",
+        prompt: "Question: Critically analyze the NRI framework, its 4 pillars, and South Africa's digital profile. [20 Marks]",
+        text: `1. Introduction & The NRI Conceptual Framework
+The Networked Readiness Index (NRI), developed by the Portulans Institute in partnership with Oxford University and the World Economic Forum, is a multidimensional benchmark that evaluates how effectively an economy leverages ICTs to drive socio-economic impact and global competitiveness. Moving beyond narrow measures of infrastructure, the contemporary NRI recognizes that technological hardware is useless without human capacity, sound governance, and tangible societal benefits.
+
+2. The Four Pillars of the Networked Readiness Index
+The NRI is structured around four mutually reinforcing pillars:
+1. Technology Pillar: Evaluates foundational digital architecture, encompassing physical access (broadband coverage, mobile penetration), national content creation, and future technology adoption (AI, cloud, IoT, 5G).
+2. People Pillar: Evaluates how three core societal sectors apply ICT: Individuals (digital literacy, tertiary education), Businesses (e-commerce, corporate R&D), and Governments (e-government services).
+3. Governance Pillar: Evaluates the enabling institutional environment, focusing on digital trust and cybersecurity, legal and regulatory frameworks (POPIA, intellectual property), and socio-economic inclusion.
+4. Impact Pillar: Measures the ultimate societal dividends of networked readiness: economic growth (GDP contribution, tech innovation), quality of life, and progress toward UN Sustainable Development Goals (SDGs).
+
+3. Critical Evaluation of South Africa’s Performance
+South Africa displays a bifurcated performance profile:
+- Key Strengths: South Africa consistently outranks regional peers in the Governance pillar, buoyed by sophisticated cyber-legislation (Cybercrimes Act, POPIA), independent regulators (ICASA), and a world-class banking/fintech sector.
+- Systemic Weaknesses: South Africa severely underperforms in the People pillar due to STEM education deficits. Crucially, persistent load shedding disrupts telecommunications base stations and data centers, while high data tariffs sustain a deep digital divide.
+
+4. Strategic Recommendations and Conclusion
+To translate institutional governance into holistic networked readiness, South Africa must execute three structural reforms:
+1. Aggressive spectrum release and subsidized rural broadband to lower the cost to communicate.
+2. National digital skills acceleration across TVET colleges.
+3. Resilient renewable energy self-generation across telecommunications infrastructure.`
+      },
+      social: {
+        title: "Exemplar Essay 3: Social Media vs. Social Networking",
+        prompt: "Question: Distinguish between Social Media and Social Networking across 5 structural dimensions, and examine their CSR applications. [20 Marks]",
+        text: `1. Introduction and Definitive Boundaries
+In popular discourse, the terms "Social Media" and "Social Networking" are frequently conflated as interchangeable synonyms. In contemporary Information Science, however, they represent fundamentally distinct communication paradigms. Social Media is an asymmetric content publishing and broadcast ecosystem designed for content consumption and mass dissemination. Conversely, Social Networking is an interactive, symmetric relationship-building infrastructure designed for the formation, maintenance, and mobilization of interpersonal social capital.
+
+2. The Five Major Structural Differences
+- 1. Primary Purpose: Social Media is designed for Broadcast & Consumption (distributing media assets for virality). Social Networking is designed for Relationship Cultivation (two-way interpersonal or professional ties).
+- 2. Communication Flow: Social Media operates Asymmetrically (One-to-Many broadcast). Social Networking operates Symmetrically (Many-to-Many reciprocal dialogue).
+- 3. Central Structural Asset: Social Media centers on the Media Asset (video/post surfaced by algorithms). Social Networking centers on the Profile and Network Graph (connections and social identity).
+- 4. Performance Metrics: Social Media prioritizes views, impressions, and reach. Social Networking prioritizes relationship depth, mutual trust, and network cohesion.
+- 5. Platform Archetypes: YouTube and TikTok (Social Media) vs. LinkedIn and Facebook Groups (Social Networking).
+
+3. Organizational Application: Corporate Social Responsibility (CSR)
+Modern corporate enterprises leverage both channels strategically:
+- Social Media for CSR Broadcasting: Organizations use YouTube mini-documentaries and Instagram infographics to broadcast environmental sustainability initiatives. While achieving massive reach, it carries the risk of consumer cynicism and public accusations of performative greenwashing.
+- Social Networking for CSR Dialogue: On professional networks such as LinkedIn, corporations engage in substantive stakeholder dialogue with NGOs, regulators, and academic researchers, establishing authentic social license to operate.
+
+4. Conclusion
+While boundaries blur through platform convergence, the analytical distinction remains crucial. Organizations that treat social networks like broadcast bullhorns alienate communities that demand authentic reciprocal engagement.`
+      },
+      marketing: {
+        title: "Exemplar Essay 4: Marketing Philosophies & The 7Ps of Information Services",
+        prompt: "Question: Evaluate Kotler's five marketing orientations and discuss the application of the 7P Marketing Mix to information goods. [20 Marks]",
+        text: `1. Introduction
+In knowledge-based economies, marketing intangible information goods (databases, software analytics, digital libraries) requires a profound departure from traditional physical commodity marketing. As articulated by Philip Kotler and applied to information science by Jeyasekar (2020), an organization's competitive success is dictated by its governing marketing orientation.
+
+2. Kotler’s Five Company Orientations to Marketing
+1. Production Concept: Assumes consumers prefer goods that are widely available and inexpensive. Focuses on production efficiency and mass distribution.
+2. Product Concept: Assumes consumers favor products with the highest quality and features. Danger: Marketing Myopia—becoming obsessed with technical complexity while ignoring what users actually need.
+3. Selling Concept: Assumes consumers will not buy enough without aggressive sales pitches and hard-sell promotion.
+4. Marketing Concept: Emphasizes discovering the target market's specific information needs and delivering superior customer satisfaction ("Sense and respond").
+5. Societal Marketing Concept: Balances company profits, customer want satisfaction, and long-term societal well-being (data privacy, ethical AI, avoiding dark patterns).
+
+3. Application of the Extended 7P Marketing Mix to Information Services
+Because information services are intangible and non-rivalrous, the traditional 4Ps must expand to the 7Ps:
+- Product: Curated digital databases, APIs, or research journals.
+- Price: Value-based models such as freemium tiers, versioning, and institutional licensing.
+- Place: Cloud-based instant delivery, mobile apps, federated search engines.
+- Promotion: Thought-leadership whitepapers, webinars, and free diagnostic trials.
+- People: Subject-specialist librarians, UX researchers, and technical support engineers.
+- Process: Seamless search algorithms, single-sign-on (SSO), and low-latency retrieval.
+- Physical Evidence: Clean UI design, verified SSL security badges, and professional citations that provide tangible cues of trustworthiness.
+
+4. Conclusion
+The evolution toward the societal marketing concept proves that sustainable advantage requires integrating customer-centric service design (the 7Ps) with ethical stewardship of societal knowledge.`
+      }
+    };
+
+    function selectEssay(key) {
+      playSfx('tap');
+      state.currentEssay = key;
+      ['malawi', 'nri', 'social', 'marketing'].forEach(k => {
+        const btn = document.getElementById('tab-essay-' + k);
+        if (k === key) {
+          btn.className = 'paper-btn p-3 bg-white text-left space-y-1 active-essay-tab border-[#1D3557] ring-2 ring-[#1D3557]/20';
+        } else {
+          btn.className = 'paper-btn p-3 bg-white text-left space-y-1 text-gray-700';
+        }
+      });
+
+      const data = ESSAY_DATA[key];
+      document.getElementById('essay-display-title').textContent = data.title;
+      document.getElementById('essay-display-prompt').textContent = data.prompt;
+      
+      const container = document.getElementById('essay-text-container');
+      container.innerHTML = data.text.split('\n\n').map(para => {
+        if (para.startsWith('1.') || para.startsWith('2.') || para.startsWith('3.') || para.startsWith('4.')) {
+          return `<h4 class="font-sans font-extrabold text-[#1D3557] text-base pt-2">${para}</h4>`;
+        }
+        return `<p class="leading-relaxed text-gray-700">${para.replace(/\n-/g, '<br/>• ')}</p>`;
+      }).join('');
+    }
+
+    function toggleRedPen() {
+      playSfx('tap');
+      const content = document.getElementById('redpen-content');
+      const icon = document.getElementById('redpen-icon');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.textContent = '▲';
+      } else {
+        content.classList.add('hidden');
+        icon.textContent = '▼';
+      }
+    }
+
+    function copyCurrentEssay() {
+      playSfx('win');
+      const data = ESSAY_DATA[state.currentEssay];
+      navigator.clipboard.writeText(data.title + '\n' + data.prompt + '\n\n' + data.text).then(() => {
+        const btn = document.getElementById('btn-copy-essay');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<span>✅</span> Copied for Word!';
+        btn.classList.add('bg-emerald-700');
+        setTimeout(() => {
+          btn.innerHTML = original;
+          btn.classList.remove('bg-emerald-700');
+        }, 2000);
+      });
+    }
+
+    const MCQ_DATA = [
+      {
+        q: "According to Phillips et al. (2022), which of the following is the definitive criterion for a 'Cyber-Dependent' crime?",
+        options: [
+          "It can only be committed through the use of ICT devices where ICT is both the tool and target",
+          "It is a traditional crime like fraud that is merely advertised on social media",
+          "It requires physical breaking and entering of a bank branch",
+          "It is committed exclusively by state intelligence agencies"
+        ],
+        correct: 0,
+        exp: "Cyber-dependent crimes (ransomware, DDoS, malware) require ICT systems to exist. Cyber-enabled crimes (phishing fraud, stalking) are traditional crimes amplified by ICT.",
+        theme: "Theme 1"
+      },
+      {
+        q: "In Paul Sturges' analysis of Malawi (1964–1994), what was the primary political purpose of Dr. Hastings Banda's Censorship Board?",
+        options: [
+          "To promote local traditional folk music across the African continent",
+          "To enforce a state information monopoly and suppress democratic opposition to ensure political survival",
+          "To raise tax revenue through import duties on foreign newspapers",
+          "To modernize university STEM curricula according to British standards"
+        ],
+        correct: 1,
+        exp: "Sturges proved that information control was not merely ideological; it was an instrument of state hegemony used to create 'information poverty' and prevent opposition from organizing.",
+        theme: "Theme 2"
+      },
+      {
+        q: "What is the defining cost structure of digital information goods (e.g. software, streaming media)?",
+        options: [
+          "High marginal cost of reproduction and low fixed development cost",
+          "High fixed sunk costs of initial creation and near-zero marginal cost of reproduction (MC ≈ 0)",
+          "Constant variable costs that increase linearly with every user",
+          "Zero fixed costs because cloud computing is completely free"
+        ],
+        correct: 1,
+        exp: "Creating the first copy costs millions (sunk fixed cost). Sending copy #2 costs literally R0.00 (marginal cost zero). Traditional cost-plus pricing fails!",
+        theme: "Theme 3"
+      },
+      {
+        q: "Why is Information / Knowledge recognized as the '5th Factor of Production' in modern macroeconomics?",
+        options: [
+          "Because it is an intangible meta-factor that multiplies the productivity of land, labour, and capital without physical depletion",
+          "Because it replaces human labour entirely in every economic sector",
+          "Because it is taxed at a higher rate by the South African Revenue Service (SARS)",
+          "Because physical land and gold no longer hold any commercial value"
+        ],
+        correct: 0,
+        exp: "Unlike physical capital which wears out and depreciates, knowledge multiplies the efficiency of all other factors and does not deplete when consumed.",
+        theme: "Theme 4"
+      },
+      {
+        q: "Which of the following correctly identifies the Four Main Pillars of the Networked Readiness Index (NRI) by the Portulans Institute?",
+        options: [
+          "Technology, People, Governance, Impact",
+          "Environment, Readiness, Usage, Innovation",
+          "Hardware, Software, Telecom, Internet",
+          "Access, Cost, Skills, Equality"
+        ],
+        correct: 0,
+        exp: "Memorize the T-P-G-I acronym! Technology (hardware), People (human skills), Governance (laws/trust/POPIA), and Impact (economic growth & SDGs).",
+        theme: "Theme 5"
+      },
+      {
+        q: "In South Africa's NRI profile, in which pillar does the country rank consistently highest relative to its regional peers?",
+        options: [
+          "People (due to world-leading public school STEM pass rates)",
+          "Governance (due to sophisticated cybercrimes laws, POPIA, and sound financial regulation)",
+          "Technology (due to zero load shedding and cheap high-speed rural fiber)",
+          "Impact (due to elimination of all income inequality)"
+        ],
+        correct: 1,
+        exp: "South Africa scores strongly in Governance (legal/financial frameworks) and telecommunications regulation, but suffers severely in People (skills deficit) and power grid reliability.",
+        theme: "Theme 5"
+      },
+      {
+        q: "Which of the following represents a primary structural difference between Social Media and Social Networking?",
+        options: [
+          "Social Media is one-to-many broadcast of media assets; Social Networking is two-way symmetric relationship building",
+          "Social Media requires paid subscriptions; Social Networking is always free",
+          "Social Media operates only on mobile phones; Social Networking is desktop only",
+          "There is zero difference; they are exact academic synonyms"
+        ],
+        correct: 0,
+        exp: "Social media is an asymmetric broadcasting channel (consumption, virality). Social networking is a symmetric dialogue infrastructure (relationships, social capital).",
+        theme: "Theme 7"
+      },
+      {
+        q: "Under Philip Kotler's marketing framework, what is the core danger of the 'Product Concept'?",
+        options: [
+          "Aggressive hard-selling that offends the customer",
+          "Marketing Myopia: becoming obsessed with technical features while ignoring user needs",
+          "Spending zero money on product quality",
+          "Excessive focus on environmental CSR and ethical privacy"
+        ],
+        correct: 1,
+        exp: "The Product Concept leads to Marketing Myopia (Theodore Levitt): falling in love with your own engineering sophistication while the customer just wants an intuitive solution.",
+        theme: "Theme 8"
+      }
+    ];
+
+    function renderMcq() {
+      const q = MCQ_DATA[state.currentMcqIndex];
+      document.getElementById('current-q-theme').textContent = `Question ${state.currentMcqIndex + 1} of ${MCQ_DATA.length} • ${q.theme}`;
+      document.getElementById('current-q-text').textContent = q.q;
+
+      const optsContainer = document.getElementById('current-q-options');
+      optsContainer.innerHTML = '';
+      const feedback = document.getElementById('current-q-feedback');
+      feedback.classList.add('hidden');
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'w-full text-left p-3.5 rounded-xl border border-[#E8E2D8] bg-[#FAF7F2] hover:bg-white text-xs font-semibold text-gray-800 transition flex items-center gap-2.5';
+        btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-white border border-[#D6CEC1] flex items-center justify-center text-[10px] font-bold text-gray-600">${['A','B','C','D'][idx]}</span> <span>${opt}</span>`;
+        btn.onclick = () => answerMcq(idx, btn);
+        optsContainer.appendChild(btn);
+      });
+
+      document.getElementById('btn-prev-mcq').disabled = state.currentMcqIndex === 0;
+    }
+
+    function answerMcq(selectedIdx, btnElement) {
+      const q = MCQ_DATA[state.currentMcqIndex];
+      const isCorrect = selectedIdx === q.correct;
+      const feedback = document.getElementById('current-q-feedback');
+
+      if (isCorrect) {
+        playSfx('win');
+        btnElement.className = 'w-full text-left p-3.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-xs font-bold text-emerald-900 transition flex items-center gap-2.5 shadow';
+        state.streak++;
+        state.marksSecured = Math.min(125, state.marksSecured + 5);
+        document.getElementById('hud-marks').textContent = state.marksSecured;
+        feedback.className = 'p-4 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-950 space-y-1 text-xs block';
+        feedback.innerHTML = `<span class="font-extrabold flex items-center gap-1.5 text-emerald-800"><span>✅</span> SPOT ON! (+5 Marks)</span><p class="text-[11.5px] leading-relaxed">${q.exp}</p>`;
+      } else {
+        playSfx('tap');
+        btnElement.className = 'w-full text-left p-3.5 rounded-xl border-2 border-rose-400 bg-rose-50 text-xs font-bold text-rose-900 transition flex items-center gap-2.5 shadow';
+        state.streak = 0;
+        feedback.className = 'p-4 rounded-xl border border-rose-200 bg-rose-50 text-rose-950 space-y-1 text-xs block';
+        feedback.innerHTML = `<span class="font-extrabold flex items-center gap-1.5 text-rose-800"><span>⚠️</span> Examiner Trap Alert</span><p class="text-[11.5px] leading-relaxed">${q.exp}</p>`;
+      }
+
+      document.getElementById('current-q-streak').textContent = `Streak: ${state.streak} 🔥`;
+      state.answeredMcqs[state.currentMcqIndex] = true;
+      document.getElementById('mcq-progress-badge').textContent = `${Object.keys(state.answeredMcqs).length} / ${MCQ_DATA.length} Answered`;
+    }
+
+    function nextMcq() {
+      playSfx('tap');
+      if (state.currentMcqIndex < MCQ_DATA.length - 1) {
+        state.currentMcqIndex++;
+        renderMcq();
+      }
+    }
+
+    function prevMcq() {
+      playSfx('tap');
+      if (state.currentMcqIndex > 0) {
+        state.currentMcqIndex--;
+        renderMcq();
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      selectEssay('malawi');
+      renderMcq();
+    });
+  </script>
+</body>
+</html>
